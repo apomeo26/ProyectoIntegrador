@@ -10,6 +10,9 @@
         </a>
     </div>
 </div>
+
+<h3>GENERAR REPORTE EVENTOS <a href="\imprimirEventos">
+        <button class="btn btn-success"><span class="glyphicon glyphicon-download-alt"></span> Generar PDF</button></a></h3>
 <div class="row">
     <div class="col-md-12 col-xs-12">
         <div class="table-responsive">

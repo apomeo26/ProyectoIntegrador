@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::resource('evento','EventoController');
 Route::resource('mascota','mascotasController');
+Route::get('imprimirEventos','PDFController@imprimirEventos')->name('imprimirEventos');
