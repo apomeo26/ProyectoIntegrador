@@ -21,6 +21,7 @@
                     <th>Raza</th>
                     <th>Nombre</th>
                     <th>Color</th>
+                    <th>Responsable</th>
                     <th width="180">Opciones</th>
                 </thead>
                 <tbody>
@@ -31,6 +32,7 @@
                         <td>{{ $mascota->raza}}</td>
                         <td>{{ $mascota->nombre }}</td>
                         <td>{{ $mascota->color }}</td>
+                        <td>{{ $mascota->habitantes->nombre}}</td>
                         <td>
                             <a href="{{URL::action('mascotasController@edit',$mascota->id)}}"><button class="btn btn-primary">Actualizar</button></a>
                             <a href="" data-target="#modal-delete-{{$mascota->id}}" data-target="" data-toggle="modal">

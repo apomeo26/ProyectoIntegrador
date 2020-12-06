@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +19,10 @@ Route::get('/', function () {
 
 Route::resource('evento','EventoController');
 Route::resource('mascota','mascotasController');
+Route::resource('habitante', 'HabitantesController');
+Route::resource('empleado',  'EmpleadoController');
+Route::resource('visitante',  'VisitanteController');
 Route::get('imprimirEventos','PDFController@imprimirEventos')->name('imprimirEventos');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

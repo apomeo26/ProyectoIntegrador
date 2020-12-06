@@ -39,7 +39,18 @@
             <input type="text" name="color" id="color" class="form-control" value="{{$mascotas->color}}">
         </div>
     </div>
-    
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="form-group">
+            <label for="Role">Responsable</label>
+            <select name="habitantes_id" id="habitantes_id" class="form-control selectpicker" data-livesearch="true">
+                <option value="" diseable selected >Responsable:</option>
+                @foreach($habitante as $habitantes)
+                <option value="{{$habitantes->id}}"> {{$habitantes->numero_apartamento}} - {{$habitantes->bloque}}
+                </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="form-group"> <br>
 

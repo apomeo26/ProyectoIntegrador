@@ -44,6 +44,20 @@
             <input type="date" name="fecha_registro" id="fecha_registro" class="form-control">
         </div>
     </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="form-group">
+            <label for="Role">Responsable</label>
+            <select name="habitantes_id" id="habitantes_id" class="form-control selectpicker" data-livesearch="true">
+                <option value="" disabled selected>Responsable:</option>
+                @foreach($habitantes as $habitante)
+                <option value="{{$habitante->id}}"> {{$habitante->nombre}} - {{$habitante->apellidos}}
+                </option>
+
+                @endforeach
+            </select>
+        </div>
+    </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="form-group">
             <br>

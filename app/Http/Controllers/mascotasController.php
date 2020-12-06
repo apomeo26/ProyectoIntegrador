@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Habitante;
 use App\Mascota;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -12,15 +14,20 @@ class mascotasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
 
-        if($request){
-            $query=trim($request->get('searchText'));   
+        if ($request) {
+            $query = trim($request->get('searchText'));
 
-            $mascotas=Mascota::where('id','LIKE','%'.$query.'%') 
-            ->orderBy('id','ASC')->paginate(3);
-            return view('mascota.index',["mascotas"=>$mascotas,"searchText"=>$query]);
+            $mascotas = Mascota::where('id', 'LIKE', '%' . $query . '%')
+                ->orderBy('id', 'ASC')->paginate(3);
+            return view('mascota.index', ["mascotas" => $mascotas, "searchText" => $query]);
         }
     }
 
@@ -29,9 +36,21 @@ class mascotasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('mascota.create');
+        $request->user()->authorizeRoles('admin');
+
+       /* $habitantes = Habitante::select('id', 'nombre', 'apellidos')
+            ->orderBy('id','ASC')
+            ->get();
+
+        return view("mascota.create", ["habitantes" => $habitantes]);*/
+        
+        $habitantes = Habitante::orderBy('id', 'DESC')
+        ->select('habitantes.id', 'habitantes.nombre','habitantes.apellidos')
+        ->get();
+        return view('mascota.create')->with('habitante', $habitantes);
+      
     }
 
     /**
@@ -47,6 +66,7 @@ class mascotasController extends Controller
         $mascotas->raza = $request->get('raza');
         $mascotas->nombre = $request->get('nombre');
         $mascotas->color = $request->get('color');
+        $mascotas->habitantes_id =$request->get('habitantes_id');
         $mascotas->save();
         return Redirect::to('mascota');
     }
