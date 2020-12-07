@@ -34,7 +34,11 @@
         <div class="form-group">
             <br>
             <label for="estado">Estado</label>
-            <input type="text" name="estado" id="estado" class="form-control" placeholder="Ingrese el estado del evento">
+            <select name="estado" id="estado" class="form-control">
+                <option value="" disabled selected>Eliga el estado:</option>
+                <option>Activo</option>
+                <option>Inactivo</option>
+            </select>
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -46,19 +50,32 @@
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="form-group"> <br>
+            <label for="tipo_responsable">Tipo Responsable</label>
+            <select name="tipo_responsable" id="tipo_responsable" class="form-control">
+            <option value="" disabled selected>Eliga el tipo:</option>
+                <option>Admon</option>
+                <option>Habitante</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="form-group">
+        <br>
             <label for="Role">Responsable</label>
             <select name="habitantes_id" id="habitantes_id" class="form-control selectpicker" data-livesearch="true">
                 <option value="" disabled selected>Responsable:</option>
                 @foreach($habitantes as $habitante)
-                <option value="{{$habitante->id}}"> {{$habitante->nombre}} - {{$habitante->apellidos}}
+                <option value="{{$habitante->id}}"> {{$habitante->nombre}} {{$habitante->apellidos}}
                 </option>
-
                 @endforeach
             </select>
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+    <div class="col-lg-10 col-md-6 col-sm-6 col-xs-12">
         <div class="form-group">
             <br>
             <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-ok"></span>Guardar</button>

@@ -27,11 +27,11 @@ class Habitante extends Model
     }
 
     public function mascota(){
-        return $this->hasMany('App\mascota');
+        return $this->hasMany('App\Mascota');
     }
 
     public function evento(){
-        return $this->hasMany('App\evento');
+        return $this->hasMany('App\Evento');
     }
 }
 

@@ -46,8 +46,8 @@
             <label for="Role">Responsable</label>
             <select name="habitantes_id" id="habitantes_id" class="form-control selectpicker" data-livesearch="true">
                 <option value="" disabled selected>Responsable:</option>
-                @foreach($habitante as $habitantes)
-                <option value="{{$habitantes->id}}"> {{$habitantes->nombre}} - {{$habitantes->apellidos}}
+                @foreach($habitantes as $habitante)
+                <option value="{{$habitante->id}}"> {{$habitante->nombre}} - {{$habitante->apellidos}}
                 </option>
 
                 @endforeach

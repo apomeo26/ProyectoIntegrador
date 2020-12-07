@@ -10,7 +10,7 @@ class Mascota extends Model
     protected $fillable = ['tipo', 'raza', 'nombre', 'color'];
 
 
-    public function habitante(){
-        return $this->belongsTo('App\habitante');
+    public function habitantes(){
+        return $this->belongsTo('App\Habitante');
     }
 }

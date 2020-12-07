@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Evento extends Model
 {
     public $timestamps=false;
-    protected $fillable=['tipo','descripcion','estado','fecha_registro'];
+    protected $fillable=['tipo','descripcion','estado','fecha_registro','tipo_responsable'];
 
-    public function habitante(){
-        return $this->belongsTo('App\habitante');
+    public function habitantes(){
+        return $this->belongsTo('App\Habitante');
     }
 }

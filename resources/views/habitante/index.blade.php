@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-md-12 col-xs-12">
         <div class="table-responsive">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" >
                 <thead>
                     <th>Id</th>
                     <th>Nombre</th>
@@ -24,11 +24,11 @@
                     <th>Fijo</th>
                     <th>Celular</th>
                     <th>Correo</th>
-                    <th>Registro</th>
                     <th>Estado</th>
                     <th>Tipo Habitante</th>
                     <th>Bloque</th>
                     <th>Apartamento</th>
+                    <th>Registro</th>
                     <th width="180">Opciones</th>
                 </thead>
                 <tbody>
@@ -42,11 +42,11 @@
                         <td>{{ $hab->telefono_fijo}}</td>
                         <td>{{ $hab->telefono_celular}}</td>
                         <td>{{ $hab->correo}}</td>
-                        <td>{{ $hab->fecha_registro}}</td>
                         <td>{{ $hab->estado_vigencia}}</td>
                         <td>{{ $hab->tipo_habitante}}</td>
                         <td>{{ $hab->bloque}}</td>
                         <td>{{ $hab->numero_apartamento}}</td>
+                        <td>{{ $hab->fecha_registro}}</td>
                         <td>
                             <a href="{{URL::action('HabitantesController@edit',$hab->id)}}"> <button class="btn btn-primary">Actualizar</button></a>
 

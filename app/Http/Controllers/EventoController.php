@@ -41,12 +41,11 @@ class EventoController extends Controller
      */
     public function create(Request $request)
     {
-        $request->user()->authorizeRoles('admin');
         
         $habitantes = Habitante::orderBy('id', 'DESC')
         ->select('habitantes.id', 'habitantes.nombre','habitantes.apellidos')
         ->get();
-        return view('evento.create')->with('habitante', $habitantes);
+        return view('evento.create')->with('habitantes', $habitantes);
         
     }
 
@@ -63,6 +62,7 @@ class EventoController extends Controller
         $eventos->descripcion = $request->get('descripcion');
         $eventos->estado = $request->get('estado');
         $eventos->fecha_registro = $request->get('fecha_registro');
+        $eventos->tipo_responsable = $request->get('tipo_responsable');
         $eventos->habitantes_id =$request->get('habitantes_id');
         $eventos->save();
         return Redirect::to('evento');
@@ -88,7 +88,10 @@ class EventoController extends Controller
     public function edit($id)
     {
         $eventos = Evento::findOrFail($id);
-        return view("evento.edit", ["eventos" => $eventos]);
+        $habitantes = Habitante::orderBy('id', 'DESC')
+        ->select('id', 'nombre', 'apellidos')
+        ->get();
+        return view("evento.edit", ["eventos" => $eventos, "habitantes" => $habitantes]);
     }
 
     /**
@@ -105,6 +108,7 @@ class EventoController extends Controller
         $eventos->descripcion = $request->get('descripcion');
         $eventos->estado = $request->get('estado');
         $eventos->fecha_registro = $request->get('fecha_registro');
+        $eventos->tipo_responsable = $request->get('tipo_responsable');
         $eventos->update();
         return Redirect::to('evento');
     }

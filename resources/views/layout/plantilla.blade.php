@@ -61,7 +61,7 @@ desired effect
     <header class="main-header">
 
       <!-- Logo -->
-      <a href="{{url('propietario')}}" class="logo">
+      <a href="{{url('home')}}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>C</b>V</span>
         <!-- logo for regular state and mobile devices -->

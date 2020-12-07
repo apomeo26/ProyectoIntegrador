@@ -39,17 +39,11 @@ class mascotasController extends Controller
     public function create(Request $request)
     {
         $request->user()->authorizeRoles('admin');
-
-       /* $habitantes = Habitante::select('id', 'nombre', 'apellidos')
-            ->orderBy('id','ASC')
-            ->get();
-
-        return view("mascota.create", ["habitantes" => $habitantes]);*/
         
         $habitantes = Habitante::orderBy('id', 'DESC')
         ->select('habitantes.id', 'habitantes.nombre','habitantes.apellidos')
         ->get();
-        return view('mascota.create')->with('habitante', $habitantes);
+        return view('mascota.create')->with('habitantes', $habitantes);
       
     }
 
@@ -91,7 +85,11 @@ class mascotasController extends Controller
     public function edit($id)
     {
         $mascotas = Mascota::findOrFail($id);
-        return view("mascota.edit", ["mascotas" => $mascotas]);
+
+        $habitantes = Habitante::orderBy('id', 'DESC')
+        ->select('id', 'nombre', 'apellidos')
+        ->get();
+        return view("mascota.edit", ["mascotas" => $mascotas, "habitantes" => $habitantes]);
     }
 
     /**

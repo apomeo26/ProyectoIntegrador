@@ -23,8 +23,9 @@ class HabitantesController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRoles('admin');
 
         $habitantes = Habitante::join('detalle_habitantes as dh', 'dh.habitantes_id', '=', 'habitantes.id')
             ->join('apartamento as ap', 'dh.apartamento_id', '=', 'ap.id')
@@ -43,7 +44,7 @@ class HabitantesController extends Controller
                 'bloque',
                 'numero_apartamento'
             )
-            ->orderBy('habitantes.id', 'DESC')->paginate(3);
+            ->orderBy('habitantes.id', 'ASC')->paginate(3);
 
 
         return view('habitante.index', compact('habitantes'));
@@ -54,8 +55,10 @@ class HabitantesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $request->user()->authorizeRoles('admin');
+
        $ap = apartamento::select('id', 'bloque', 'numero_apartamento')
             ->orderBy('id', 'ASC')
             ->get();
@@ -142,6 +145,7 @@ class HabitantesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->user()->authorizeRoles('admin');
         $habitante = Habitante::findOrFail($id);
         $habitante->nombre = $request->get('nombre');
         $habitante->apellidos = $request->get('apellidos');
@@ -178,8 +182,9 @@ class HabitantesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
+        $request->user()->authorizeRoles('admin');
 
         $dh = detalle_habitantes::where('habitantes_id', '=', $id);
         $dh->delete();

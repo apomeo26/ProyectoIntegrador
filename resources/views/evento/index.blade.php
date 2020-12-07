@@ -24,6 +24,7 @@
                     <th>Descripción</th>
                     <th>Estado</th>
                     <th>Fecha de registro</th>
+                    <th>Tipo de responsable</th>
                     <th>Responsable</th>
                     <th width="180">Opciones</th>
                 </thead>
@@ -35,7 +36,8 @@
                         <td>{{$evento->descripcion}}</td>
                         <td>{{$evento->estado}}</td>
                         <td>{{$evento->fecha_registro}}</td>
-                        <td>{{$evento->habitantes->nombre}}</td>
+                        <td>{{$evento->tipo_responsable}}</td>
+                        <td>{{$evento->habitantes->nombre}} {{$evento->habitantes->apellidos}}</td>
                         <td>
                             <a href="{{URL::action('EventoController@edit',$evento->id)}}"><button class="btn btn-primary">Actualizar</button></a>
                             <a href="" data-target="#modal-delete-{{$evento->id}}" data-toggle="modal">
